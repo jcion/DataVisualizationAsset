@@ -43,26 +43,28 @@ def upload_file():
 def uploader():
    if request.method == 'POST':
 
-      #uploaded_files = request.files['files']
+      uploaded_files = request.files.getlist('file')
       
-      f = request.files['file']
-      #for f in uploaded_files:
+      #f = request.files['file']
+      for f in uploaded_files:
     
-      filename = secure_filename(f.filename)
-      filepath = os.path.join('./data',filename)
-      f.save(filepath)
-      print("got here")
-      # Create the BlockBlockService that is used to call the Blob service for the storage account
-      block_blob_service = BlockBlobService(account_name='cs4100a111d8e55x43e5xb14', account_key='HY6YCXWTPcNMYM4yWYiXKKrKWUlpB2f2680P9hqjOopnoYiCjNIScRedkf8kBl2oUn6TES5u8JUCTIBCM6lwRw==')
-      # Create a container called 'quickstartblobs'.
-      container_name ='quickstartblobs'
-      block_blob_service.create_container(container_name)
+        filename = secure_filename(f.filename)
+        filepath = os.path.join('./data',filename)
+        f.save(filepath)
+        print("got here")
+        # Create the BlockBlockService that is used to call the Blob service for the storage account
+        block_blob_service = BlockBlobService(account_name='cs4100a111d8e55x43e5xb14', account_key='HY6YCXWTPcNMYM4yWYiXKKrKWUlpB2f2680P9hqjOopnoYiCjNIScRedkf8kBl2oUn6TES5u8JUCTIBCM6lwRw==')
+        # Create a container called 'quickstartblobs'.
+        container_name ='quickstartblobs'
+        block_blob_service.create_container(container_name)
 
-      # Set the permission so the blobs are public.
-      block_blob_service.set_container_acl(container_name, public_access=PublicAccess.Container)
+        # Set the permission so the blobs are public.
+        block_blob_service.set_container_acl(container_name, public_access=PublicAccess.Container)
 
-      # Upload the file to blob, use filename for the blob name
-      block_blob_service.create_blob_from_path(container_name, filename, filepath)
+        # Upload the file to blob, use filename for the blob name
+        block_blob_service.create_blob_from_path(container_name, filename, filepath)
+
+        os.remove(filepath)
 
       # List the blobs in the container
       print("\nList blobs in the container")
