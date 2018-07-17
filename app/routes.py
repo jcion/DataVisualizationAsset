@@ -61,6 +61,8 @@ def uploadToBlob(f):
     filepath = os.path.join('./tempdata',filename)
     f.save(filepath)
 
+
+    #test test test
     # Create the BlockBlockService that is used to call the Blob service for the storage account
     block_blob_service = BlockBlobService(account_name='cs4100a111d8e55x43e5xb14', account_key='HY6YCXWTPcNMYM4yWYiXKKrKWUlpB2f2680P9hqjOopnoYiCjNIScRedkf8kBl2oUn6TES5u8JUCTIBCM6lwRw==')
     # Create a container called 'quickstartblobs'.
