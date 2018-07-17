@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+ 
+
+    
+    
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://app.powerbi.com/view?r=eyJrIjoiZmFmNmQ1ZGMtYzFiOC00NWE5LWJiMzAtZWY5NTdjNTNlNWJhIiwidCI6IjRjMWIyMTlkLTg3MTItNDQ5NS1hOTJjLTMxZTZkYjZkMTg4MyIsImMiOjZ9" allowfullscreen></iframe>
+      </div>
 {% endblock %}
