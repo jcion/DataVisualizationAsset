@@ -3,12 +3,25 @@
 <html>
    <body>
    
-      <form action = "/uploader" method = "POST" 
+      <!-- <form action = "/uploader" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" multiple/>
          <input type = "submit"  value = "Upload"/> 
-      </form>
+      </form> -->
       
+      <div class="container">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form method="POST" action = "/uploader" enctype="multipart/form-data">
+                <input type="file" id="files" name="file" multiple="multiple" />
+                <p style="text-align: right; margin-top: 20px;">
+                    <input type="submit" value="Upload Files" class="btn btn-lg btn-primary" />
+                </p>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+   
    </body>
 </html>
 
