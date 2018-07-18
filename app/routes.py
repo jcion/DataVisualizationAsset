@@ -1,4 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, SelectField
+from wtforms.validators import Required
 from app import app
 from werkzeug.utils import secure_filename
 from app.forms import LoginForm
@@ -8,6 +11,16 @@ from azure.storage.blob import BlockBlobService, PublicAccess
 
 @app.route('/')
 
+
+@app.route('/questionnaire', methods=['GET', 'POST'])
+def questionnaire():
+    form = QuestionForm()
+    if form.validate_on_submit():
+        companyName = form.companyName.data
+        message = "Welcome"+ companyName
+        return render_template('questionnaire.html', form=form, message=message)
+    else:
+        return render_template('questionnaire.html', form=form)
 
 
 
@@ -61,6 +74,8 @@ def uploadToBlob(f):
     filepath = os.path.join('./tempdata',filename)
     f.save(filepath)
 
+
+    #test test test
     # Create the BlockBlockService that is used to call the Blob service for the storage account
     block_blob_service = BlockBlobService(account_name='cs4100a111d8e55x43e5xb14', account_key='HY6YCXWTPcNMYM4yWYiXKKrKWUlpB2f2680P9hqjOopnoYiCjNIScRedkf8kBl2oUn6TES5u8JUCTIBCM6lwRw==')
     # Create a container called 'quickstartblobs'.
@@ -75,3 +90,8 @@ def uploadToBlob(f):
 
     # Remove the temporary files from ./data now that they are uploaded onto blob storage.
     os.remove(filepath)
+
+class QuestionForm(FlaskForm):
+    companyName = StringField('Company name:', validators=[Required()])
+    industry = SelectField(u'Industry', choices=[('mining', 'Mining'),('retail', 'Retail'),('forestry', 'Forestry'),('agriculture', 'Agriculture'),('construction', 'Construction')])
+    submit = SubmitField('Submit')
