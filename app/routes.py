@@ -82,5 +82,7 @@ def uploadToBlob(f):
 
 class QuestionForm(FlaskForm):
     companyName = StringField('Company name:', validators=[Required()])
-    industry = SelectField(u'Industry', choices=[('mining', 'Mining'),('retail', 'Retail'),('forestry', 'Forestry'),('agriculture', 'Agriculture'),('construction', 'Construction')])
+    industry = SelectField(u'Industry', choices=[('mining', 'Mining'),('retail', 'Retail'),
+    ('forestry', 'Forestry'),('agriculture', 'Agriculture'),('construction', 'Construction')])
+    companySize = SelectField(u'Company Size', choices=[('xs','1-10'),('s','10-50'),('m','50-250'),('l','250-100'),('xl','1000+')])
     submit = SubmitField('Submit')
